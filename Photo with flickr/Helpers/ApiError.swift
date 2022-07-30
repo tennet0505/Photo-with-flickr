@@ -8,6 +8,8 @@
 import Foundation
 
 enum ApiError {
-    case data
-    case failure
+    case dataError
+    case networkError
+    case authError
+    case serverError
 }

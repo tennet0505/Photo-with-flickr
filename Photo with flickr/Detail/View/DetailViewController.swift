@@ -10,19 +10,24 @@ import SDWebImage
 
 class DetailViewController: UIViewController, UIScrollViewDelegate {
 
-    
     @IBOutlet weak var collectionView: UICollectionView!
-    var photos: [PhotoElement] = []
-    var selectedIndexPath = IndexPath(row: 0, section: 0)
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var zoomView: UIView!
     @IBOutlet weak var imageViewZoom: UIImageView!
     
+    var photos: [PhotoElement] = []
+    var selectedIndexPath = IndexPath(row: 0, section: 0)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+       setupUI()
+    }
+    
+    func setupUI() {
+        navigationController?.navigationBar.standardAppearance.titleTextAttributes = [.foregroundColor: UIColor(named: "mainColor")]
         scrollToIndex(index: selectedIndexPath.row)
         scrollView.minimumZoomScale = 1.0
-        scrollView.maximumZoomScale = 2.0
+        scrollView.maximumZoomScale = 3.0
     }
     
     func scrollToIndex(index:Int) {
@@ -32,15 +37,18 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
             self.collectionView.isPagingEnabled = true
         }
     }
+    
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return imageViewZoom
     }
+    
     @IBAction func closeButton(_ sender: Any) {
        
         UIView.animate(withDuration: 0.5, delay: 0, animations: {
             self.zoomView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
             self.zoomView.alpha = 0
         }) { (_) in
+            self.navigationItem.title = ""
             self.imageViewZoom.image = UIImage(named: "")
             self.zoomView.isHidden = true
         }
@@ -77,6 +85,7 @@ extension DetailViewController: UICollectionViewDataSource, UICollectionViewDele
         self.zoomView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         self.zoomView.isHidden = false
         UIView.animate(withDuration: 0.5, delay: 0, animations: {
+            self.navigationItem.title = photoItem.title
             self.zoomView.transform = CGAffineTransform.identity
             self.zoomView.alpha = 1
         })

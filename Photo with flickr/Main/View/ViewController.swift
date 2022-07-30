@@ -40,6 +40,7 @@ class ViewController: UIViewController {
         viewModel.mainViewModeldelegate = self
         navigationItem.searchController = searchBarController
         searchBarController.searchResultsUpdater = self
+        navigationController?.navigationBar.standardAppearance.titleTextAttributes = [.foregroundColor: UIColor(named: "mainColor")]
         
     }
     
@@ -93,7 +94,7 @@ extension ViewController: MainViewModeldelegate {
     
     func didFinishWith(Error: Error) {
         dismissHUD(isAnimated: true)
-        print(Error)
+        showAlertWith(message: Error.localizedDescription)
     }
 }
 //MARK: Search bar

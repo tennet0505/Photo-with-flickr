@@ -201,7 +201,7 @@
                                         </connections>
                                     </scrollView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hKI-ZU-6oL">
-                                        <rect key="frame" x="350" y="16" width="48" height="48"/>
+                                        <rect key="frame" x="366" y="0.0" width="48" height="48"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="dl3-4E-g0X"/>
@@ -214,15 +214,23 @@
                                             <action selector="closeButton:" destination="0fm-UN-DxF" eventType="touchUpInside" id="Hu8-cx-ND7"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zoom in and out" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gu2-dt-i5o">
+                                        <rect key="frame" x="16" y="16" width="124" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="Gu2-dt-i5o" firstAttribute="top" secondItem="fnD-qQ-SUi" secondAttribute="top" constant="16" id="39q-Ga-8dg"/>
                                     <constraint firstItem="oU1-vU-qJ9" firstAttribute="leading" secondItem="fnD-qQ-SUi" secondAttribute="leading" id="Ca7-CF-gaS"/>
-                                    <constraint firstAttribute="trailing" secondItem="hKI-ZU-6oL" secondAttribute="trailing" constant="16" id="bPy-NQ-eWQ"/>
+                                    <constraint firstItem="Gu2-dt-i5o" firstAttribute="leading" secondItem="fnD-qQ-SUi" secondAttribute="leading" constant="16" id="TFU-e2-dhs"/>
+                                    <constraint firstAttribute="trailing" secondItem="hKI-ZU-6oL" secondAttribute="trailing" id="bPy-NQ-eWQ"/>
                                     <constraint firstItem="oU1-vU-qJ9" firstAttribute="width" secondItem="fnD-qQ-SUi" secondAttribute="width" id="fkj-OA-uQF"/>
                                     <constraint firstAttribute="bottom" secondItem="oU1-vU-qJ9" secondAttribute="bottom" id="h17-ZK-tdc"/>
                                     <constraint firstItem="oU1-vU-qJ9" firstAttribute="top" secondItem="fnD-qQ-SUi" secondAttribute="top" id="hkD-sQ-oyc"/>
-                                    <constraint firstItem="hKI-ZU-6oL" firstAttribute="top" secondItem="fnD-qQ-SUi" secondAttribute="top" constant="16" id="piy-D4-OfV"/>
+                                    <constraint firstItem="hKI-ZU-6oL" firstAttribute="top" secondItem="fnD-qQ-SUi" secondAttribute="top" id="piy-D4-OfV"/>
                                     <constraint firstAttribute="trailing" secondItem="oU1-vU-qJ9" secondAttribute="trailing" id="vEP-7u-efq"/>
                                 </constraints>
                             </view>
@@ -262,6 +270,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.16078431369999999" green="0.3803921569" blue="0.83137254900000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.0" green="0.3016580539" blue="0.77647058820000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
                         <navigationBarAppearance key="standardAppearance"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

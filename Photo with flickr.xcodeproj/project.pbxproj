@@ -143,9 +143,9 @@
 				064DFC8D28953A6500785DDE /* Detail */,
 				064DFC4C2894680800785DDE /* AppDelegate.swift */,
 				064DFC4E2894680800785DDE /* SceneDelegate.swift */,
-				064DFC522894680800785DDE /* Main.storyboard */,
 				064DFC552894680A00785DDE /* Assets.xcassets */,
 				064DFC572894680A00785DDE /* LaunchScreen.storyboard */,
+				064DFC522894680800785DDE /* Main.storyboard */,
 				064DFC5A2894680A00785DDE /* Info.plist */,
 			);
 			path = "Photo with flickr";
