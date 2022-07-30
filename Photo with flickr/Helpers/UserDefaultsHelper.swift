@@ -13,9 +13,9 @@ class UserDefaultsHelper {
    
     private var storage = UserDefaults()
     
-    func getFavoritesIDs() -> [String]{
+    func getFavoritesIDs() -> Set<String>{
         guard let allFavoritesIDs = storage.object(forKey: "FavoritesIDs") as? Data,
-              let favoritesIDs = try? JSONDecoder().decode( [String].self, from: allFavoritesIDs) else {
+              let favoritesIDs = try? JSONDecoder().decode(Set<String>.self, from: allFavoritesIDs) else {
             return []
         }
         return favoritesIDs
@@ -23,7 +23,7 @@ class UserDefaultsHelper {
     
     func addNewFavoritPhotoWith(_ Id: String) {
         var allFavoritesIDs = getFavoritesIDs()
-        allFavoritesIDs.append(Id)
+        allFavoritesIDs.insert(Id)
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(allFavoritesIDs) {
             let defaults = UserDefaults.standard
