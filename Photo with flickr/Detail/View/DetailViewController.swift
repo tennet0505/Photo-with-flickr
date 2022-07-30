@@ -8,17 +8,21 @@
 import UIKit
 import SDWebImage
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, UIScrollViewDelegate {
 
     
     @IBOutlet weak var collectionView: UICollectionView!
     var photos: [PhotoElement] = []
     var selectedIndexPath = IndexPath(row: 0, section: 0)
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var zoomView: UIView!
+    @IBOutlet weak var imageViewZoom: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         scrollToIndex(index: selectedIndexPath.row)
-        
+        scrollView.minimumZoomScale = 1.0
+        scrollView.maximumZoomScale = 2.0
     }
     
     func scrollToIndex(index:Int) {
@@ -27,7 +31,20 @@ class DetailViewController: UIViewController {
             self.collectionView.scrollToItem(at: IndexPath(item: index, section: 0), at: .centeredHorizontally, animated: false)
             self.collectionView.isPagingEnabled = true
         }
-    }    
+    }
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return imageViewZoom
+    }
+    @IBAction func closeButton(_ sender: Any) {
+       
+        UIView.animate(withDuration: 0.5, delay: 0, animations: {
+            self.zoomView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+            self.zoomView.alpha = 0
+        }) { (_) in
+            self.imageViewZoom.image = UIImage(named: "")
+            self.zoomView.isHidden = true
+        }
+    }
 }
 
 extension DetailViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -52,6 +69,17 @@ extension DetailViewController: UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let photoItem = self.photos[indexPath.row]
+        imageViewZoom.sd_setImage(with: photoItem.urlImage)
+        self.zoomView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        self.zoomView.isHidden = false
+        UIView.animate(withDuration: 0.5, delay: 0, animations: {
+            self.zoomView.transform = CGAffineTransform.identity
+            self.zoomView.alpha = 1
+        })
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

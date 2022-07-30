@@ -178,6 +178,54 @@
                                     <outlet property="delegate" destination="0fm-UN-DxF" id="RXr-d7-1wb"/>
                                 </connections>
                             </collectionView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fnD-qQ-SUi">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <subviews>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oU1-vU-qJ9">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9kH-SU-FfM">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                            </imageView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="9kH-SU-FfM" firstAttribute="bottom" secondItem="oU1-vU-qJ9" secondAttribute="bottom" id="NY5-4c-uRN"/>
+                                            <constraint firstItem="9kH-SU-FfM" firstAttribute="centerX" secondItem="oU1-vU-qJ9" secondAttribute="centerX" id="OIQ-KY-66Z"/>
+                                            <constraint firstItem="9kH-SU-FfM" firstAttribute="leading" secondItem="oU1-vU-qJ9" secondAttribute="leading" id="OVA-89-Wyr"/>
+                                            <constraint firstItem="9kH-SU-FfM" firstAttribute="top" secondItem="oU1-vU-qJ9" secondAttribute="top" id="PXf-du-5X2"/>
+                                            <constraint firstItem="9kH-SU-FfM" firstAttribute="centerY" secondItem="oU1-vU-qJ9" secondAttribute="centerY" id="U7y-Kb-SEV"/>
+                                            <constraint firstItem="9kH-SU-FfM" firstAttribute="trailing" secondItem="oU1-vU-qJ9" secondAttribute="trailing" id="wcX-pj-jae"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="delegate" destination="0fm-UN-DxF" id="Xkb-YQ-0g8"/>
+                                        </connections>
+                                    </scrollView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hKI-ZU-6oL">
+                                        <rect key="frame" x="350" y="16" width="48" height="48"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="dl3-4E-g0X"/>
+                                            <constraint firstAttribute="width" constant="48" id="kLO-iI-Ssw"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="multiply.circle" catalog="system" imagePadding="0.0"/>
+                                        <connections>
+                                            <action selector="closeButton:" destination="0fm-UN-DxF" eventType="touchUpInside" id="Hu8-cx-ND7"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="oU1-vU-qJ9" firstAttribute="leading" secondItem="fnD-qQ-SUi" secondAttribute="leading" id="Ca7-CF-gaS"/>
+                                    <constraint firstAttribute="trailing" secondItem="hKI-ZU-6oL" secondAttribute="trailing" constant="16" id="bPy-NQ-eWQ"/>
+                                    <constraint firstItem="oU1-vU-qJ9" firstAttribute="width" secondItem="fnD-qQ-SUi" secondAttribute="width" id="fkj-OA-uQF"/>
+                                    <constraint firstAttribute="bottom" secondItem="oU1-vU-qJ9" secondAttribute="bottom" id="h17-ZK-tdc"/>
+                                    <constraint firstItem="oU1-vU-qJ9" firstAttribute="top" secondItem="fnD-qQ-SUi" secondAttribute="top" id="hkD-sQ-oyc"/>
+                                    <constraint firstItem="hKI-ZU-6oL" firstAttribute="top" secondItem="fnD-qQ-SUi" secondAttribute="top" constant="16" id="piy-D4-OfV"/>
+                                    <constraint firstAttribute="trailing" secondItem="oU1-vU-qJ9" secondAttribute="trailing" id="vEP-7u-efq"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="zIr-nV-oDP"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -185,12 +233,19 @@
                             <constraint firstItem="bft-h0-aGm" firstAttribute="leading" secondItem="zIr-nV-oDP" secondAttribute="leading" id="1j3-ws-gbb"/>
                             <constraint firstItem="bft-h0-aGm" firstAttribute="top" secondItem="zIr-nV-oDP" secondAttribute="top" id="5UP-R4-Xu2"/>
                             <constraint firstItem="zIr-nV-oDP" firstAttribute="bottom" secondItem="bft-h0-aGm" secondAttribute="bottom" id="8ZE-NX-Acn"/>
+                            <constraint firstAttribute="bottom" secondItem="fnD-qQ-SUi" secondAttribute="bottom" id="Dsl-x7-f3N"/>
+                            <constraint firstItem="fnD-qQ-SUi" firstAttribute="leading" secondItem="zIr-nV-oDP" secondAttribute="leading" id="RTP-NT-wYK"/>
+                            <constraint firstItem="zIr-nV-oDP" firstAttribute="trailing" secondItem="fnD-qQ-SUi" secondAttribute="trailing" id="WNB-92-ar6"/>
                             <constraint firstItem="zIr-nV-oDP" firstAttribute="trailing" secondItem="bft-h0-aGm" secondAttribute="trailing" id="ai3-qt-wZz"/>
+                            <constraint firstItem="fnD-qQ-SUi" firstAttribute="top" secondItem="zIr-nV-oDP" secondAttribute="top" id="pM9-oJ-gRA"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title=" " id="ikD-0A-t5O"/>
                     <connections>
                         <outlet property="collectionView" destination="bft-h0-aGm" id="w1Q-IK-bqS"/>
+                        <outlet property="imageViewZoom" destination="9kH-SU-FfM" id="K9L-u2-fP9"/>
+                        <outlet property="scrollView" destination="oU1-vU-qJ9" id="Mzg-Zq-z2c"/>
+                        <outlet property="zoomView" destination="fnD-qQ-SUi" id="QWB-Ag-05E"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dSI-VL-8ft" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -221,5 +276,6 @@
     </scenes>
     <resources>
         <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="multiply.circle" catalog="system" width="128" height="121"/>
     </resources>
 </document>
