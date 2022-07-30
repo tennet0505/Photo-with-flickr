@@ -8,25 +8,26 @@
 import Foundation
 
 // MARK: - Photo
-struct Photo: Codable {
+class Photo: Codable {
     var photos: Photos?
     var stat: String
 }
 
 // MARK: - Photos
-struct Photos: Codable {
+class Photos: Codable {
     var page, pages, perpage, total: Int
     var photo: [PhotoElement]
 }
 
 // MARK: - PhotoElement
-struct PhotoElement: Codable {
+class PhotoElement: Codable {
     var id: String
     var owner: String
     var secret: String
     var server: String
     var farm: Int
     var title: String
+    var isFav: Bool?
     
     var urlImage: URL {
         let stringURL = "http://farm\(farm).static.flickr.com/\(server)/\(id)_\(secret).jpg"

@@ -37,15 +37,30 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jxp-68-led">
                                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hqo-RS-sy8">
+                                                    <rect key="frame" x="104" y="104" width="16" height="16"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="16" id="5tg-bE-9rC"/>
+                                                        <constraint firstAttribute="width" constant="16" id="AkV-XC-XsU"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
+                                                    <connections>
+                                                        <action selector="favButtonTap:" destination="Pyg-Yc-9OK" eventType="touchUpInside" id="bvB-N3-sbe"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Jxp-68-led" firstAttribute="top" secondItem="gfJ-wu-N44" secondAttribute="top" id="8q8-5C-1xa"/>
                                                 <constraint firstAttribute="trailing" secondItem="Jxp-68-led" secondAttribute="trailing" id="E8y-9Y-gVj"/>
                                                 <constraint firstAttribute="bottom" secondItem="Jxp-68-led" secondAttribute="bottom" id="ERd-DH-EdO"/>
+                                                <constraint firstAttribute="bottom" secondItem="Hqo-RS-sy8" secondAttribute="bottom" constant="8" id="GTC-Aw-0QS"/>
+                                                <constraint firstAttribute="trailing" secondItem="Hqo-RS-sy8" secondAttribute="trailing" constant="8" id="Ufy-vT-VBp"/>
                                                 <constraint firstItem="Jxp-68-led" firstAttribute="leading" secondItem="gfJ-wu-N44" secondAttribute="leading" id="l13-6e-jLd"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <connections>
+                                            <outlet property="favButton" destination="Hqo-RS-sy8" id="gpu-0o-amF"/>
                                             <outlet property="image" destination="Jxp-68-led" id="XfU-7S-h8z"/>
                                         </connections>
                                     </collectionViewCell>
@@ -98,32 +113,59 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="hac-2d-EbW">
-                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="itemSize" width="416" height="737"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="GxI-1e-1of" customClass="DetailCollectionViewCell" customModule="Photo_with_flickr" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <rect key="frame" x="0.0" y="18.5" width="416" height="737"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="I1D-di-89H">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="416" height="737"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hqv-V8-3bW">
-                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="416" height="737"/>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iSp-C5-Zpx">
+                                                    <rect key="frame" x="368" y="32" width="32" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="32" id="8CP-CT-oIc"/>
+                                                        <constraint firstAttribute="width" constant="32" id="hly-Fw-QSf"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
+                                                    <connections>
+                                                        <action selector="favButtonTap:" destination="GxI-1e-1of" eventType="touchUpInside" id="Ohy-O8-2Nd"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DwR-lc-A80">
+                                                    <rect key="frame" x="16" y="32" width="320" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
+                                            <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
                                             <constraints>
                                                 <constraint firstItem="hqv-V8-3bW" firstAttribute="leading" secondItem="I1D-di-89H" secondAttribute="leading" id="1DM-Hr-8zc"/>
+                                                <constraint firstItem="DwR-lc-A80" firstAttribute="leading" secondItem="I1D-di-89H" secondAttribute="leading" constant="16" id="5Ua-Tz-0yu"/>
                                                 <constraint firstItem="hqv-V8-3bW" firstAttribute="top" secondItem="I1D-di-89H" secondAttribute="top" id="8NJ-5g-QYe"/>
+                                                <constraint firstItem="iSp-C5-Zpx" firstAttribute="top" secondItem="I1D-di-89H" secondAttribute="top" constant="32" id="Fwb-ei-rNX"/>
+                                                <constraint firstItem="DwR-lc-A80" firstAttribute="top" secondItem="I1D-di-89H" secondAttribute="top" constant="32" id="Gd6-zW-Aes"/>
                                                 <constraint firstAttribute="bottom" secondItem="hqv-V8-3bW" secondAttribute="bottom" id="fJn-mO-mdm"/>
                                                 <constraint firstAttribute="trailing" secondItem="hqv-V8-3bW" secondAttribute="trailing" id="g8X-8d-b5A"/>
+                                                <constraint firstItem="iSp-C5-Zpx" firstAttribute="leading" secondItem="DwR-lc-A80" secondAttribute="trailing" constant="32" id="ngy-xj-ZOu"/>
+                                                <constraint firstAttribute="trailing" secondItem="iSp-C5-Zpx" secondAttribute="trailing" constant="16" id="xYc-sA-4o9"/>
                                             </constraints>
                                         </collectionViewCellContentView>
+                                        <size key="customSize" width="416" height="737"/>
                                         <connections>
+                                            <outlet property="favoriteButton" destination="iSp-C5-Zpx" id="0aW-IW-B6d"/>
                                             <outlet property="imageView" destination="hqv-V8-3bW" id="3g1-p9-nxF"/>
+                                            <outlet property="nameLabel" destination="DwR-lc-A80" id="iK2-ef-vrD"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -149,7 +191,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dSI-VL-8ft" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1648" y="78"/>
+            <point key="canvasLocation" x="1647.826086956522" y="77.678571428571431"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Mxd-kk-NWx">
@@ -171,7 +213,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="heart" catalog="system" width="128" height="109"/>
         <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="tertiarySystemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>

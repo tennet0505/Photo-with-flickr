@@ -25,6 +25,8 @@
 		064DFC9228953A9700785DDE /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064DFC9128953A9700785DDE /* DetailViewModel.swift */; };
 		064DFC9428953AAA00785DDE /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064DFC9328953AAA00785DDE /* DetailViewController.swift */; };
 		064DFC9628953ABA00785DDE /* DetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064DFC9528953ABA00785DDE /* DetailCollectionViewCell.swift */; };
+		064DFC9828954A4000785DDE /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064DFC9728954A4000785DDE /* UserDefaultsHelper.swift */; };
+		064DFC9A28955F9A00785DDE /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064DFC9928955F9A00785DDE /* Extentions.swift */; };
 		1CB3F5DFBA5F889C1A9F9DB3 /* Pods_Photo_with_flickrTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42265362B3A4D8FFD780BDA1 /* Pods_Photo_with_flickrTests.framework */; };
 		A62D21CBA9E164A995E718A6 /* Pods_Photo_with_flickr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE74C79BF54B2AE5F590B68B /* Pods_Photo_with_flickr.framework */; };
 		B880CAE72279DB93574BA38D /* Pods_Photo_with_flickr_Photo_with_flickrUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2006E0EEDFBC5F68ED3F12F /* Pods_Photo_with_flickr_Photo_with_flickrUITests.framework */; };
@@ -70,6 +72,8 @@
 		064DFC9128953A9700785DDE /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		064DFC9328953AAA00785DDE /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		064DFC9528953ABA00785DDE /* DetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewCell.swift; sourceTree = "<group>"; };
+		064DFC9728954A4000785DDE /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
+		064DFC9928955F9A00785DDE /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		42265362B3A4D8FFD780BDA1 /* Pods_Photo_with_flickrTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Photo_with_flickrTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D5CF8C63BEB32BABEFF0F48 /* Pods-Photo with flickr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Photo with flickr.debug.xcconfig"; path = "Target Support Files/Pods-Photo with flickr/Pods-Photo with flickr.debug.xcconfig"; sourceTree = "<group>"; };
 		8C13827C8ABCA014A0917856 /* Pods-Photo with flickr-Photo with flickrUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Photo with flickr-Photo with flickrUITests.debug.xcconfig"; path = "Target Support Files/Pods-Photo with flickr-Photo with flickrUITests/Pods-Photo with flickr-Photo with flickrUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -205,6 +209,8 @@
 				064DFC85289468BB00785DDE /* ApiError.swift */,
 				064DFC872894692100785DDE /* ApiService.swift */,
 				064DFC892894696E00785DDE /* Constants.swift */,
+				064DFC9728954A4000785DDE /* UserDefaultsHelper.swift */,
+				064DFC9928955F9A00785DDE /* Extentions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -506,10 +512,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				064DFC9428953AAA00785DDE /* DetailViewController.swift in Sources */,
+				064DFC9828954A4000785DDE /* UserDefaultsHelper.swift in Sources */,
 				064DFC832894688200785DDE /* MainViewModel.swift in Sources */,
 				064DFC8C2895314600785DDE /* MainCollectionViewCell.swift in Sources */,
 				064DFC512894680800785DDE /* ViewController.swift in Sources */,
 				064DFC9228953A9700785DDE /* DetailViewModel.swift in Sources */,
+				064DFC9A28955F9A00785DDE /* Extentions.swift in Sources */,
 				064DFC4D2894680800785DDE /* AppDelegate.swift in Sources */,
 				064DFC4F2894680800785DDE /* SceneDelegate.swift in Sources */,
 				064DFC812894687100785DDE /* Models.swift in Sources */,

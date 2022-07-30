@@ -27,7 +27,7 @@ class DetailViewController: UIViewController {
             self.collectionView.scrollToItem(at: IndexPath(item: index, section: 0), at: .centeredHorizontally, animated: false)
             self.collectionView.isPagingEnabled = true
         }
-    }
+    }    
 }
 
 extension DetailViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -37,17 +37,26 @@ extension DetailViewController: UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! DetailCollectionViewCell
-        
+        let unselectedfavImage = UIImage(systemName: "heart")
+        let selectedfavImage = UIImage(systemName: "heart.fill")
         let photoItem = self.photos[indexPath.row]
         cell.imageView.sd_setImage(with: photoItem.urlImage)
+        cell.nameLabel.text = photoItem.title
+        cell.isFav = photoItem.isFav ?? false
+        (photoItem.isFav ?? false) ? cell.favoriteButton.setImage(selectedfavImage, for: .normal) : cell.favoriteButton.setImage(unselectedfavImage, for: .normal)
+        cell.callback = { isFav in
+            UserDefaultsHelper.shared.addNewFavoritPhotoWith(photoItem.id)
+            self.updateListOf(self.photos, with: photoItem.id)
+        }
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.row)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: view.frame.height)
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        collectionView.reloadData()
     }
 }

@@ -28,6 +28,11 @@ class ViewController: UIViewController {
 //        searchPhotosBy("gor")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        collectionView.reloadData()
+    }
+    
     func setupViewModel() {
         apiService = ApiService()
         viewModel = MainViewModel(apiService: apiService)
@@ -75,9 +80,16 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! MainCollectionViewCell
-        
+        let unselectedfavImage = UIImage(systemName: "heart")
+        let selectedfavImage = UIImage(systemName: "heart.fill")
         let photoItem = self.photos[indexPath.row]
         cell.image.sd_setImage(with: photoItem.urlImage)
+        cell.isFav = photoItem.isFav ?? false
+        (photoItem.isFav ?? false) ? cell.favButton.setImage(selectedfavImage, for: .normal) : cell.favButton.setImage(unselectedfavImage, for: .normal)
+        cell.callback = { isFav in
+            UserDefaultsHelper.shared.addNewFavoritPhotoWith(photoItem.id)
+            self.updateListOf(self.photos, with: photoItem.id)
+        }
         return cell
     }
     
@@ -90,5 +102,10 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: (view.frame.width - 32) / 4, height: (view.frame.width - 32) / 4)
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        collectionView.reloadData()
     }
 }
