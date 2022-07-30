@@ -81,7 +81,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Photo" id="uL7-cM-ySS">
-                        <barButtonItem key="leftBarButtonItem" id="AqZ-tU-gd1"/>
+                        <barButtonItem key="leftBarButtonItem" title="Random gallery" id="AqZ-tU-gd1">
+                            <connections>
+                                <action selector="randomGalleryButton:" destination="BYZ-38-t0r" id="5yx-bm-r9z"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Favorites" id="YJU-Fy-QtC">
                             <color key="tintColor" red="0.16078431369999999" green="0.3803921569" blue="0.83137254900000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
@@ -92,6 +96,7 @@
                     <connections>
                         <outlet property="collectionView" destination="UyY-wa-VBn" id="jy2-cg-6tU"/>
                         <outlet property="favoritesButton" destination="YJU-Fy-QtC" id="ExP-jq-tvg"/>
+                        <outlet property="randomGallery" destination="AqZ-tU-gd1" id="cly-eF-45n"/>
                         <segue destination="0fm-UN-DxF" kind="show" identifier="segueToDetail" id="6Js-Gb-Sfg"/>
                     </connections>
                 </viewController>

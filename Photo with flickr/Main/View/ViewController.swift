@@ -12,8 +12,9 @@ import ViewAnimator
 class ViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
-   
     @IBOutlet weak var favoritesButton: UIBarButtonItem!
+    @IBOutlet weak var randomGallery: UIBarButtonItem!
+    
     let searchBarController = UISearchController()
     var viewModel: MainViewModel!
     var apiService: ApiService!
@@ -23,7 +24,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupUI()
         setupViewModel()
         getPhotos()
         
@@ -38,15 +39,17 @@ class ViewController: UIViewController {
         apiService = ApiService()
         viewModel = MainViewModel(apiService: apiService)
         viewModel.mainViewModeldelegate = self
+    }
+    
+    func setupUI() {
         navigationItem.searchController = searchBarController
         searchBarController.searchResultsUpdater = self
         navigationController?.navigationBar.standardAppearance.titleTextAttributes = [.foregroundColor: UIColor(named: "mainColor")]
-        
     }
     
     func getPhotos() {
         photos.removeAll()
-        viewModel.getPhotos()
+        viewModel.getPhotos(withRandomGallery: false)
     }
     
     func searchPhotosBy(_ text: String)  {
@@ -73,6 +76,13 @@ class ViewController: UIViewController {
             getPhotos()
         }
     }
+    
+    @IBAction func randomGalleryButton(_ sender: Any) {
+        showAlertWith( title: "Oops!", message: "coming soon...")
+//        photos.removeAll()
+//        viewModel.getPhotos(withRandomGallery: true)
+    }
+    
 }
 
 //MARK: Delegates

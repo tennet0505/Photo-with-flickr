@@ -23,11 +23,11 @@ init(apiService: ApiProtocol) {
     self.apiService = apiService
 }
     
-    func getPhotos() {
+    func getPhotos(withRandomGallery: Bool) {
        
         Task {
             mainViewModeldelegate?.didStartRequest()
-            let result: Result<Photo, Error> = try await apiService.getPhotos()
+            let result: Result<Photo, Error> = try await apiService.getPhotos(withRandomGallery: withRandomGallery)
             switch result {
             case .failure(let error):
                 mainViewModeldelegate?.didFinishWith(Error: error)

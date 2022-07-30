@@ -8,15 +8,20 @@
 import Foundation
 
 protocol ApiProtocol {
-    func getPhotos() async throws -> Result<Photo, Error>
+    func getPhotos(withRandomGallery: Bool) async throws -> Result<Photo, Error>
     func searchPhotosBy(_ text: String) async throws -> Result<Photo, Error>
 }
 
 class ApiService: ApiProtocol {
-    
-    private let url = URL(string:"https://www.flickr.com/services/rest/?method=flickr.galleries.getPhotos&api_key=4c78bf3ac2290a4de8f56802bc1c41ac&gallery_id=72157720505970591&format=json&nojsoncallback=1&auth_token=72157720852060992-8ae28a7627974352&api_sig=3939b5787bd593a050736588df1af387")
+       
                             
-    func getPhotos() async -> Result<Photo, Error> {
+    func getPhotos(withRandomGallery: Bool) async -> Result<Photo, Error> {
+        //mock data
+        
+        let galleryNumber = withRandomGallery ? MockUrl.galleries.randomElement() ?? MockUrl.galleryMain :  MockUrl.galleryMain
+        print(galleryNumber)
+        let url = URL(string: galleryNumber)
+        
         do {
             let (data, _) = try await URLSession.shared.data(from: url!)
             let photos = try JSONDecoder().decode(Photo.self, from: data)
