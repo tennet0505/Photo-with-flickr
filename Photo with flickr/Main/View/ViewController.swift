@@ -7,6 +7,7 @@
 
 import UIKit
 import SDWebImage
+import ViewAnimator
 
 class ViewController: UIViewController {
     
@@ -36,35 +37,19 @@ class ViewController: UIViewController {
     func setupViewModel() {
         apiService = ApiService()
         viewModel = MainViewModel(apiService: apiService)
+        viewModel.mainViewModeldelegate = self
         navigationItem.searchController = searchBarController
         searchBarController.searchResultsUpdater = self
         
     }
     
     func getPhotos() {
-        viewModel.getPhotos(
-            complitionSuccess: { photos in
-                self.photos.removeAll()
-                DispatchQueue.main.async {
-                    self.photos = photos
-                    self.collectionView.reloadData()
-                }
-            }, complitionError: { error in
-                print(error)
-            })
+        photos.removeAll()
+        viewModel.getPhotos()
     }
     
     func searchPhotosBy(_ text: String)  {
-        viewModel.searchPhotosBy(text,
-                                 complitionSuccess: { photos in
-            self.photos.removeAll()
-            DispatchQueue.main.async {
-                self.photos = photos
-                self.collectionView.reloadData()
-            }
-        }, complitionError: { error in
-            print(error)
-        })
+        viewModel.searchPhotosBy(text)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -89,6 +74,29 @@ class ViewController: UIViewController {
     }
 }
 
+//MARK: Delegates
+extension ViewController: MainViewModeldelegate {
+    func didStartRequest() {
+        showHUD()
+    }
+    
+    func didFinishLoading(photos: [PhotoElement]) {
+        self.photos.removeAll()
+        DispatchQueue.main.async {
+            self.photos = photos
+            self.collectionView.reloadData()
+            let animation = AnimationType.from(direction: .top, offset: 30.0)
+            UIView.animate(views: self.collectionView.visibleCells, animations: [animation], delay: 0, duration: 0.3)
+        }
+        dismissHUD(isAnimated: true)
+    }
+    
+    func didFinishWith(Error: Error) {
+        dismissHUD(isAnimated: true)
+        print(Error)
+    }
+}
+//MARK: Search bar
 extension ViewController: UISearchResultsUpdating  {
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else {
@@ -98,12 +106,15 @@ extension ViewController: UISearchResultsUpdating  {
             searchPhotosBy(text)
         }
         if text.isEmpty {
-            getPhotos()
+            let queue = DispatchQueue(label: "queue", attributes: .concurrent)
+            queue.async(flags: .barrier) {
+                self.getPhotos()
+            }
         }
     }
 }
 
-
+//MARK: Collection DataSource, Delegate
 extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return  self.photos.count
@@ -124,10 +135,8 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        self.selectedIndexPath = indexPath
+        selectedIndexPath = indexPath
         performSegue(withIdentifier: "segueToDetail", sender: self)
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

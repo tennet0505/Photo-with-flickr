@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import MBProgressHUD
 
 extension UIViewController {
     func updateListOf(_ photos: [PhotoElement], with id: String, isFav: Bool) {
@@ -17,4 +18,16 @@ extension UIViewController {
             UserDefaultsHelper.shared.removeFromFavoritPhotoWith(id)
         }
     }
+    
+    func showHUD(){
+           DispatchQueue.main.async{
+               MBProgressHUD.showAdded(to: self.view, animated: true)
+           }
+       }
+
+       func dismissHUD(isAnimated:Bool) {
+           DispatchQueue.main.async{
+               MBProgressHUD.hide(for: self.view, animated: isAnimated)
+           }
+       }
 }

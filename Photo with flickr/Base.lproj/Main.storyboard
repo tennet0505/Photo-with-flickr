@@ -4,12 +4,11 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--fake flickr-->
+        <!--Photo-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Photo_with_flickr" customModuleProvider="target" sceneMemberID="viewController">
@@ -19,7 +18,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="UyY-wa-VBn">
                                 <rect key="frame" x="8" y="96" width="398" height="766"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="4" minimumInteritemSpacing="4" id="Igf-gD-9C6">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -43,6 +42,7 @@
                                                         <constraint firstAttribute="height" constant="16" id="5tg-bE-9rC"/>
                                                         <constraint firstAttribute="width" constant="16" id="AkV-XC-XsU"/>
                                                     </constraints>
+                                                    <color key="tintColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
                                                     <connections>
@@ -72,7 +72,7 @@
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="UyY-wa-VBn" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="3iR-XH-P3k"/>
                             <constraint firstItem="UyY-wa-VBn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="7B2-an-ir4"/>
@@ -80,8 +80,10 @@
                             <constraint firstItem="UyY-wa-VBn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="z8q-SJ-uG2"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="fake flickr" id="uL7-cM-ySS">
+                    <navigationItem key="navigationItem" title="Photo" id="uL7-cM-ySS">
+                        <barButtonItem key="leftBarButtonItem" id="AqZ-tU-gd1"/>
                         <barButtonItem key="rightBarButtonItem" title="Favorites" id="YJU-Fy-QtC">
+                            <color key="tintColor" red="0.16078431369999999" green="0.3803921569" blue="0.83137254900000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="favoritesButton:" destination="BYZ-38-t0r" id="noF-fo-6F6"/>
                             </connections>
@@ -97,17 +99,17 @@
             </objects>
             <point key="canvasLocation" x="819" y="78"/>
         </scene>
-        <!--Detail View Controller-->
+        <!-- -->
         <scene sceneID="zhJ-gQ-6OW">
             <objects>
-                <viewController id="0fm-UN-DxF" customClass="DetailViewController" customModule="Photo_with_flickr" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailViewController" modalPresentationStyle="fullScreen" id="0fm-UN-DxF" customClass="DetailViewController" customModule="Photo_with_flickr" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LqB-dz-k0s">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bft-h0-aGm">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bft-h0-aGm" customClass="MVCarouselCollectionView" customModule="MVCarouselCollectionView">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="hac-2d-EbW">
                                     <size key="itemSize" width="416" height="737"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -123,7 +125,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hqv-V8-3bW">
-                                                    <rect key="frame" x="0.0" y="0.0" width="416" height="737"/>
+                                                    <rect key="frame" x="16" y="0.0" width="384" height="737"/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iSp-C5-Zpx">
                                                     <rect key="frame" x="368" y="32" width="32" height="32"/>
@@ -131,33 +133,39 @@
                                                         <constraint firstAttribute="height" constant="32" id="8CP-CT-oIc"/>
                                                         <constraint firstAttribute="width" constant="32" id="hly-Fw-QSf"/>
                                                     </constraints>
+                                                    <color key="tintColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
                                                     <connections>
                                                         <action selector="favButtonTap:" destination="GxI-1e-1of" eventType="touchUpInside" id="Ohy-O8-2Nd"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DwR-lc-A80">
-                                                    <rect key="frame" x="16" y="32" width="320" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DwR-lc-A80">
+                                                    <rect key="frame" x="16" y="32" width="320" height="26.5"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="Label">
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.16078431369999999" green="0.3803921569" blue="0.83137254900000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <font key="NSFont" size="22" name="BodoniSvtyTwoOSITCTT-Book"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" systemColor="tertiarySystemBackgroundColor"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstItem="hqv-V8-3bW" firstAttribute="leading" secondItem="I1D-di-89H" secondAttribute="leading" id="1DM-Hr-8zc"/>
+                                                <constraint firstItem="hqv-V8-3bW" firstAttribute="leading" secondItem="I1D-di-89H" secondAttribute="leading" constant="16" id="1DM-Hr-8zc"/>
                                                 <constraint firstItem="DwR-lc-A80" firstAttribute="leading" secondItem="I1D-di-89H" secondAttribute="leading" constant="16" id="5Ua-Tz-0yu"/>
                                                 <constraint firstItem="hqv-V8-3bW" firstAttribute="top" secondItem="I1D-di-89H" secondAttribute="top" id="8NJ-5g-QYe"/>
                                                 <constraint firstItem="iSp-C5-Zpx" firstAttribute="top" secondItem="I1D-di-89H" secondAttribute="top" constant="32" id="Fwb-ei-rNX"/>
                                                 <constraint firstItem="DwR-lc-A80" firstAttribute="top" secondItem="I1D-di-89H" secondAttribute="top" constant="32" id="Gd6-zW-Aes"/>
                                                 <constraint firstAttribute="bottom" secondItem="hqv-V8-3bW" secondAttribute="bottom" id="fJn-mO-mdm"/>
-                                                <constraint firstAttribute="trailing" secondItem="hqv-V8-3bW" secondAttribute="trailing" id="g8X-8d-b5A"/>
+                                                <constraint firstAttribute="trailing" secondItem="hqv-V8-3bW" secondAttribute="trailing" constant="16" id="g8X-8d-b5A"/>
                                                 <constraint firstItem="iSp-C5-Zpx" firstAttribute="leading" secondItem="DwR-lc-A80" secondAttribute="trailing" constant="32" id="ngy-xj-ZOu"/>
                                                 <constraint firstAttribute="trailing" secondItem="iSp-C5-Zpx" secondAttribute="trailing" constant="16" id="xYc-sA-4o9"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="416" height="737"/>
                                         <connections>
                                             <outlet property="favoriteButton" destination="iSp-C5-Zpx" id="0aW-IW-B6d"/>
                                             <outlet property="imageView" destination="hqv-V8-3bW" id="3g1-p9-nxF"/>
@@ -172,7 +180,7 @@
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="zIr-nV-oDP"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="bft-h0-aGm" firstAttribute="leading" secondItem="zIr-nV-oDP" secondAttribute="leading" id="1j3-ws-gbb"/>
                             <constraint firstItem="bft-h0-aGm" firstAttribute="top" secondItem="zIr-nV-oDP" secondAttribute="top" id="5UP-R4-Xu2"/>
@@ -180,7 +188,7 @@
                             <constraint firstItem="zIr-nV-oDP" firstAttribute="trailing" secondItem="bft-h0-aGm" secondAttribute="trailing" id="ai3-qt-wZz"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="ikD-0A-t5O"/>
+                    <navigationItem key="navigationItem" title=" " id="ikD-0A-t5O"/>
                     <connections>
                         <outlet property="collectionView" destination="bft-h0-aGm" id="w1Q-IK-bqS"/>
                     </connections>
@@ -197,6 +205,9 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="mSK-oK-C1C">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.16078431369999999" green="0.3803921569" blue="0.83137254900000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <navigationBarAppearance key="standardAppearance"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -210,11 +221,5 @@
     </scenes>
     <resources>
         <image name="heart" catalog="system" width="128" height="109"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="tertiarySystemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>
