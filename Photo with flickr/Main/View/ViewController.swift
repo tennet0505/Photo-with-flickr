@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     var viewModel: MainViewModel!
     var apiService: ApiService!
     var photos: [PhotoElement] = []
+    var selectedIndexPath = IndexPath(row: 0, section: 0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +55,15 @@ class ViewController: UIViewController {
             print(error)
         })
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "segueToDetail",
+            let vc = segue.destination as? DetailViewController {
+            vc.selectedIndexPath = self.selectedIndexPath
+            vc.photos = self.photos
+        }
+    }
 }
 
 
@@ -72,7 +82,10 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.row)
+        
+        self.selectedIndexPath = indexPath
+        performSegue(withIdentifier: "segueToDetail", sender: self)
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
