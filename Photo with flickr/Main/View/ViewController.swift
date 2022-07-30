@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
     
+    let searchBarController = UISearchController()
     var viewModel: MainViewModel!
     var apiService: ApiService!
     var photos: [PhotoElement] = []
@@ -36,6 +37,9 @@ class ViewController: UIViewController {
     func setupViewModel() {
         apiService = ApiService()
         viewModel = MainViewModel(apiService: apiService)
+        navigationItem.searchController = searchBarController
+        searchBarController.searchResultsUpdater = self
+        
     }
     
     func getPhotos() {
@@ -55,7 +59,10 @@ class ViewController: UIViewController {
         viewModel.searchPhotosBy(text,
                                  complitionSuccess: { photos in
             self.photos.removeAll()
-            self.photos = photos
+            DispatchQueue.main.async {
+                self.photos = photos
+                self.collectionView.reloadData()
+            }
         }, complitionError: { error in
             print(error)
         })
@@ -71,6 +78,19 @@ class ViewController: UIViewController {
     }
 }
 
+extension ViewController: UISearchResultsUpdating  {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else {
+            return
+        }
+        if text.count > 2 {
+            searchPhotosBy(text)
+        }
+        if text.isEmpty {
+            getPhotos()
+        }
+    }
+}
 
 
 extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {

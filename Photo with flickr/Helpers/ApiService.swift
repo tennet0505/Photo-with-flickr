@@ -33,7 +33,8 @@ class ApiService: ApiProtocol {
     }
     
     func searchPhotosBy(_ text: String) async -> Result<Photo, Error> {
-        let url = URL(string: "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=7b0d15e1aa549cb911633afa2554fe67&format=json&nojsoncallback=1&safe_search=1&text=\(text)")
+        let searchText = text.replacingOccurrences(of: " ", with: "-")
+        let url = URL(string: "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=\(Constants.APIkey)&format=json&nojsoncallback=1&safe_search=1&text=\(searchText)")
         do {
             let (data, _) = try await URLSession.shared.data(from: url!)
             let photos = try JSONDecoder().decode(Photo.self, from: data)
@@ -42,8 +43,6 @@ class ApiService: ApiProtocol {
             return .failure(error)
         }
     }
-    
-   
 }
 
 

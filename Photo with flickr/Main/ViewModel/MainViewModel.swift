@@ -33,10 +33,6 @@ init(apiService: ApiProtocol) {
         }
     }
     
-    func updated(_ photos: [PhotoElement]) {
-       
-    }
-    
     func searchPhotosBy(_ text: String,
                         complitionSuccess: @escaping ([PhotoElement]) -> (),
                         complitionError: @escaping (Error) -> ()) {
@@ -46,6 +42,10 @@ init(apiService: ApiProtocol) {
             case .failure(let error):
                 complitionError(error)
             case .success(let photos):
+                let favIds = UserDefaultsHelper.shared.getFavoritesIDs()
+                for id in favIds {
+                    photos.photos?.photo.filter({$0.id == id}).first?.isFav = true
+                }
                 complitionSuccess(photos.photos?.photo ?? [])
             }
         }
