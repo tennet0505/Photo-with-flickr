@@ -138,9 +138,9 @@
 		064DFC4B2894680800785DDE /* Photo with flickr */ = {
 			isa = PBXGroup;
 			children = (
-				064DFC8D28953A6500785DDE /* Detail */,
 				064DFC84289468A800785DDE /* Helpers */,
 				064DFC7C2894681D00785DDE /* Main */,
+				064DFC8D28953A6500785DDE /* Detail */,
 				064DFC4C2894680800785DDE /* AppDelegate.swift */,
 				064DFC4E2894680800785DDE /* SceneDelegate.swift */,
 				064DFC522894680800785DDE /* Main.storyboard */,

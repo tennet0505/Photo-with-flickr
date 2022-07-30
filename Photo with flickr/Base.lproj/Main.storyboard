@@ -80,9 +80,16 @@
                             <constraint firstItem="UyY-wa-VBn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="z8q-SJ-uG2"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="fake flickr" id="uL7-cM-ySS"/>
+                    <navigationItem key="navigationItem" title="fake flickr" id="uL7-cM-ySS">
+                        <barButtonItem key="rightBarButtonItem" title="Favorites" id="YJU-Fy-QtC">
+                            <connections>
+                                <action selector="favoritesButton:" destination="BYZ-38-t0r" id="noF-fo-6F6"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="UyY-wa-VBn" id="jy2-cg-6tU"/>
+                        <outlet property="favoritesButton" destination="YJU-Fy-QtC" id="ExP-jq-tvg"/>
                         <segue destination="0fm-UN-DxF" kind="show" identifier="segueToDetail" id="6Js-Gb-Sfg"/>
                     </connections>
                 </viewController>

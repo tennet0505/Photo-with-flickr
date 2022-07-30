@@ -9,7 +9,7 @@ import Foundation
 
 class MainViewModel {
 
-private let apiService: ApiProtocol
+    private let apiService: ApiProtocol
     var photos: [PhotoElement] = []
 
 init(apiService: ApiProtocol) {

@@ -45,8 +45,7 @@ extension DetailViewController: UICollectionViewDataSource, UICollectionViewDele
         cell.isFav = photoItem.isFav ?? false
         (photoItem.isFav ?? false) ? cell.favoriteButton.setImage(selectedfavImage, for: .normal) : cell.favoriteButton.setImage(unselectedfavImage, for: .normal)
         cell.callback = { isFav in
-            UserDefaultsHelper.shared.addNewFavoritPhotoWith(photoItem.id)
-            self.updateListOf(self.photos, with: photoItem.id)
+            self.updateListOf(self.photos, with: photoItem.id, isFav: isFav)
         }
         return cell
     }

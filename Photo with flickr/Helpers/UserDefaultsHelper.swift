@@ -21,6 +21,17 @@ class UserDefaultsHelper {
         return favoritesIDs
     }
     
+    func removeFromFavoritPhotoWith(_ Id: String) {
+        var allFavoritesIDs = getFavoritesIDs()
+        allFavoritesIDs.remove(Id)
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(allFavoritesIDs) {
+            let defaults = UserDefaults.standard
+            defaults.set(encoded, forKey: "FavoritesIDs")
+        }
+        print(getFavoritesIDs())
+    }
+    
     func addNewFavoritPhotoWith(_ Id: String) {
         var allFavoritesIDs = getFavoritesIDs()
         allFavoritesIDs.insert(Id)
@@ -29,7 +40,6 @@ class UserDefaultsHelper {
             let defaults = UserDefaults.standard
             defaults.set(encoded, forKey: "FavoritesIDs")
         }
-        
         print(getFavoritesIDs())
     }
 }

@@ -11,13 +11,14 @@ import SDWebImage
 class ViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var searchBar: UISearchBar!
-    
+   
+    @IBOutlet weak var favoritesButton: UIBarButtonItem!
     let searchBarController = UISearchController()
     var viewModel: MainViewModel!
     var apiService: ApiService!
     var photos: [PhotoElement] = []
     var selectedIndexPath = IndexPath(row: 0, section: 0)
+    var showFavorites = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +26,6 @@ class ViewController: UIViewController {
         setupViewModel()
         getPhotos()
         
-        
-//        searchPhotosBy("gor")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,6 +75,18 @@ class ViewController: UIViewController {
             vc.photos = self.photos
         }
     }
+    
+    @IBAction func favoritesButton(_ sender: Any) {
+        showFavorites = !showFavorites
+        if showFavorites {
+            self.favoritesButton.title = "Show all photos"
+            self.photos = photos.filter{ $0.isFav == true }
+            self.collectionView.reloadData()
+        } else {
+            self.favoritesButton.title = "Favorites"
+            getPhotos()
+        }
+    }
 }
 
 extension ViewController: UISearchResultsUpdating  {
@@ -107,8 +118,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
         cell.isFav = photoItem.isFav ?? false
         (photoItem.isFav ?? false) ? cell.favButton.setImage(selectedfavImage, for: .normal) : cell.favButton.setImage(unselectedfavImage, for: .normal)
         cell.callback = { isFav in
-            UserDefaultsHelper.shared.addNewFavoritPhotoWith(photoItem.id)
-            self.updateListOf(self.photos, with: photoItem.id)
+            self.updateListOf(self.photos, with: photoItem.id, isFav: isFav)
         }
         return cell
     }
