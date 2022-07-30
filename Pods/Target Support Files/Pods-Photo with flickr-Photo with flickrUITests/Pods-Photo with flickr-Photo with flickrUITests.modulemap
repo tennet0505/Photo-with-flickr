@@ -1,0 +1,6 @@
+framework module Pods_Photo_with_flickr_Photo_with_flickrUITests {
+  umbrella header "Pods-Photo with flickr-Photo with flickrUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
