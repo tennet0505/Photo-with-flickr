@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Photo
 struct Photo: Codable {
-    var photos: Photos
+    var photos: Photos?
     var stat: String
 }
 

@@ -17,33 +17,29 @@ init(apiService: ApiProtocol) {
 }
     
     func getPhotos(complitionSuccess: @escaping ([PhotoElement]) -> (),
-                   complitionError: @escaping (Error) -> ()) async {
-        do {
+                   complitionError: @escaping (Error) -> ())  {
+        Task {
             let result: Result<Photo, Error> = try await apiService.getPhotos()
             switch result {
             case .failure(let error):
                 complitionError(error)
             case .success(let photos):
-                complitionSuccess(photos.photos.photo)
+                complitionSuccess(photos.photos?.photo ?? [])
             }
-        } catch let error {
-            print(error)
         }
     }
     
     func searchPhotosBy(_ text: String,
                         complitionSuccess: @escaping ([PhotoElement]) -> (),
-                        complitionError: @escaping (Error) -> ()) async {
-        do {
+                        complitionError: @escaping (Error) -> ()) {
+        Task {
             let result: Result<Photo, Error> = try await apiService.searchPhotosBy(text)
             switch result {
             case .failure(let error):
                 complitionError(error)
             case .success(let photos):
-                complitionSuccess(photos.photos.photo)
+                complitionSuccess(photos.photos?.photo ?? [])
             }
-        } catch let error {
-            print(error)
         }
     }
 }

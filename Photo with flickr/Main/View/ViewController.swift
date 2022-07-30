@@ -15,13 +15,10 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        setupViewModel()
-        Task {
-            await getPhotos()
-//            await searchPhotosBy("cat")
-        }
         
+        setupViewModel()
+        getPhotos()
+//        searchPhotosBy("gor")
     }
     
     func setupViewModel() {
@@ -29,8 +26,8 @@ class ViewController: UIViewController {
         viewModel = MainViewModel(apiService: apiService)
     }
     
-    func getPhotos() async {
-        await viewModel.getPhotos(
+    func getPhotos() {
+        viewModel.getPhotos(
             complitionSuccess: { photos in
                 self.photos.removeAll()
                 self.photos = photos
@@ -39,15 +36,14 @@ class ViewController: UIViewController {
             })
     }
     
-    func searchPhotosBy(_ text: String) async {
-        await viewModel.searchPhotosBy(text,
-            complitionSuccess: { photos in
-                self.photos.removeAll()
-                self.photos = photos
-            }, complitionError: { error in
-                print(error)
-            })
+    func searchPhotosBy(_ text: String)  {
+        viewModel.searchPhotosBy(text,
+                                 complitionSuccess: { photos in
+            self.photos.removeAll()
+            self.photos = photos
+        }, complitionError: { error in
+            print(error)
+        })
     }
-    
 }
 
