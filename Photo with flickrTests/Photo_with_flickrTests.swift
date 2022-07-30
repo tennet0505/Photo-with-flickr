@@ -32,7 +32,7 @@ class Photo_with_flickrTests: XCTestCase {
         
         serviceAPI.photo = photo
         Task {
-            let result: Result<Photo, Error> = try await serviceAPI.getPhotos()
+            let result: Result<Photo, Error> = try await serviceAPI.make(apiRequest: .getPhoto(withRandomGallery: false))
             switch result {
             case .failure(let error):
                 print(error)
@@ -72,7 +72,7 @@ class Photo_with_flickrTests: XCTestCase {
         
         serviceAPI.photo = photo
         //when
-        sut.getPhotos()
+        sut.make(apiRequest: .getPhoto(withRandomGallery: false))
         
         //then
         XCTAssertEqual(photos[0].id, "51968995131")
@@ -86,7 +86,7 @@ class Photo_with_flickrTests: XCTestCase {
                                                     []), stat: "")
         serviceAPI.photo = photo
         //when
-        sut.getPhotos()
+        sut.make(apiRequest: .getPhoto(withRandomGallery: false))
         //then
         XCTAssertEqual(photos.count, 0)
     }
@@ -115,7 +115,7 @@ class Photo_with_flickrTests: XCTestCase {
         
         serviceAPI.photo = photo
         //when
-        sut.searchPhotosBy("cat")
+        sut.make(apiRequest: .searchPhotosBy("cat"))
         
         //then
         XCTAssertEqual(photos[0].id, "51968995131")
@@ -129,7 +129,7 @@ class Photo_with_flickrTests: XCTestCase {
                                                     []), stat: "")
         serviceAPI.photo = photo
         //when
-        sut.searchPhotosBy("cat")
+        sut.make(apiRequest: .searchPhotosBy("cat"))
         //then
         XCTAssertEqual(photos.count, 0)
     }
@@ -138,14 +138,9 @@ class Photo_with_flickrTests: XCTestCase {
 
 
 class MockApiService: ApiProtocol {
-    
+  
     var photo: Photo!
-
-    func getPhotos() async throws -> Result<Photo, Error> {
-       return .success(photo)
-    }
-    
-    func searchPhotosBy(_ text: String) async throws -> Result<Photo, Error> {
+    func make(apiRequest: ApiRequest) async -> Result<Photo, Error> {
         return .success(photo)
     }
     

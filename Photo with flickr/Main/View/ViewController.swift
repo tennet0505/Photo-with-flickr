@@ -49,17 +49,17 @@ class ViewController: UIViewController {
     
     func getPhotos() {
         photos.removeAll()
-        viewModel.getPhotos(withRandomGallery: false)
+        viewModel.make(apiRequest: .getPhoto(withRandomGallery: false))
     }
     
     func searchPhotosBy(_ text: String)  {
-        viewModel.searchPhotosBy(text)
+        viewModel.make(apiRequest: .searchPhotosBy(text))
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "segueToDetail",
-            let vc = segue.destination as? DetailViewController {
+           let vc = segue.destination as? DetailViewController {
             vc.selectedIndexPath = self.selectedIndexPath
             vc.photos = self.photos
         }
@@ -68,32 +68,32 @@ class ViewController: UIViewController {
     @IBAction func favoritesButton(_ sender: Any) {
         showFavorites = !showFavorites
         if showFavorites {
-            self.favoritesButton.title = "Show all photos"
+            self.favoritesButton.title = PhotoLocale.showAllPhotos
             self.photos = photos.filter{ $0.isFav == true }
             self.collectionView.reloadData()
         } else {
-            self.favoritesButton.title = "Favorites"
+            self.favoritesButton.title = PhotoLocale.favorites
             getPhotos()
         }
     }
     
     @IBAction func randomGalleryButton(_ sender: Any) {
-        showAlertWith( title: "Oops!", message: "coming soon...")
-//        photos.removeAll()
-//        viewModel.getPhotos(withRandomGallery: true)
+        showAlertWith( title: PhotoLocale.oops, message: PhotoLocale.comingSoon)
+        //        photos.removeAll()
+        //        viewModel.make(apiRequest: .getPhoto(withRandomGallery: true))
     }
     
 }
 
 //MARK: Delegates
-extension ViewController: MainViewModeldelegate {
+extension ViewController: MainViewModelDelegate {
     func didStartRequest() {
         showHUD()
     }
     
     func didFinishLoading(photos: [PhotoElement]) {
-        self.photos.removeAll()
         DispatchQueue.main.async {
+            self.photos.removeAll()
             self.photos = photos
             self.collectionView.reloadData()
             let animation = AnimationType.from(direction: .top, offset: 30.0)

@@ -9,7 +9,7 @@ import UIKit
 import SDWebImage
 
 class DetailViewController: UIViewController, UIScrollViewDelegate {
-
+    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var zoomView: UIView!
@@ -20,12 +20,13 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       setupUI()
+        setupUI()
     }
     
     func setupUI() {
         navigationController?.navigationBar.standardAppearance.titleTextAttributes = [.foregroundColor: UIColor(named: "mainColor")]
         scrollToIndex(index: selectedIndexPath.row)
+        zoomView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         scrollView.minimumZoomScale = 1.0
         scrollView.maximumZoomScale = 3.0
     }
@@ -43,7 +44,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func closeButton(_ sender: Any) {
-       
+        
         UIView.animate(withDuration: 0.5, delay: 0, animations: {
             self.zoomView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
             self.zoomView.alpha = 0

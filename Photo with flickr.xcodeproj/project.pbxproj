@@ -27,6 +27,7 @@
 		064DFC9628953ABA00785DDE /* DetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064DFC9528953ABA00785DDE /* DetailCollectionViewCell.swift */; };
 		064DFC9828954A4000785DDE /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064DFC9728954A4000785DDE /* UserDefaultsHelper.swift */; };
 		064DFC9A28955F9A00785DDE /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064DFC9928955F9A00785DDE /* Extentions.swift */; };
+		0675165F2895E82200D3F594 /* StringHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0675165E2895E82200D3F594 /* StringHelper.swift */; };
 		06C0F89F2895D502002815FC /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C0F89E2895D502002815FC /* MockData.swift */; };
 		1CB3F5DFBA5F889C1A9F9DB3 /* Pods_Photo_with_flickrTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42265362B3A4D8FFD780BDA1 /* Pods_Photo_with_flickrTests.framework */; };
 		A62D21CBA9E164A995E718A6 /* Pods_Photo_with_flickr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE74C79BF54B2AE5F590B68B /* Pods_Photo_with_flickr.framework */; };
@@ -75,6 +76,7 @@
 		064DFC9528953ABA00785DDE /* DetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		064DFC9728954A4000785DDE /* UserDefaultsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsHelper.swift; sourceTree = "<group>"; };
 		064DFC9928955F9A00785DDE /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
+		0675165E2895E82200D3F594 /* StringHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringHelper.swift; sourceTree = "<group>"; };
 		06C0F89E2895D502002815FC /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		42265362B3A4D8FFD780BDA1 /* Pods_Photo_with_flickrTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Photo_with_flickrTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D5CF8C63BEB32BABEFF0F48 /* Pods-Photo with flickr.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Photo with flickr.debug.xcconfig"; path = "Target Support Files/Pods-Photo with flickr/Pods-Photo with flickr.debug.xcconfig"; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				064DFC9728954A4000785DDE /* UserDefaultsHelper.swift */,
 				064DFC9928955F9A00785DDE /* Extentions.swift */,
 				06C0F89E2895D502002815FC /* MockData.swift */,
+				0675165E2895E82200D3F594 /* StringHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -518,6 +521,7 @@
 				064DFC9828954A4000785DDE /* UserDefaultsHelper.swift in Sources */,
 				064DFC832894688200785DDE /* MainViewModel.swift in Sources */,
 				064DFC8C2895314600785DDE /* MainCollectionViewCell.swift in Sources */,
+				0675165F2895E82200D3F594 /* StringHelper.swift in Sources */,
 				06C0F89F2895D502002815FC /* MockData.swift in Sources */,
 				064DFC512894680800785DDE /* ViewController.swift in Sources */,
 				064DFC9228953A9700785DDE /* DetailViewModel.swift in Sources */,
