@@ -6,9 +6,13 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ViewController: UIViewController {
-
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     var viewModel: MainViewModel!
     var apiService: ApiService!
     var photos: [PhotoElement] = []
@@ -18,6 +22,8 @@ class ViewController: UIViewController {
         
         setupViewModel()
         getPhotos()
+        
+        
 //        searchPhotosBy("gor")
     }
     
@@ -30,7 +36,10 @@ class ViewController: UIViewController {
         viewModel.getPhotos(
             complitionSuccess: { photos in
                 self.photos.removeAll()
-                self.photos = photos
+                DispatchQueue.main.async {
+                    self.photos = photos
+                    self.collectionView.reloadData()
+                }
             }, complitionError: { error in
                 print(error)
             })
@@ -47,3 +56,26 @@ class ViewController: UIViewController {
     }
 }
 
+
+
+extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return  self.photos.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! MainCollectionViewCell
+        
+        let photoItem = self.photos[indexPath.row]
+        cell.image.sd_setImage(with: photoItem.urlImage)
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(indexPath.row)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: (view.frame.width - 32) / 4, height: (view.frame.width - 32) / 4)
+    }
+}
