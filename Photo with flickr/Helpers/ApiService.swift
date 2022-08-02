@@ -25,7 +25,6 @@ class ApiService: ApiProtocol {
             
         case .getPhoto(let withRandomGallery):
             let galleryNumber = withRandomGallery ? MockUrl.galleries.randomElement() ?? MockUrl.galleryMain :  MockUrl.galleryMain
-            print(galleryNumber)
             url = URL(string: galleryNumber)
         case .searchPhotosBy(let text):
             let searchText = text.replacingOccurrences(of: " ", with: "-")
