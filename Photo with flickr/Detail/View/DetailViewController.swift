@@ -72,8 +72,10 @@ extension DetailViewController: UICollectionViewDataSource, UICollectionViewDele
         cell.favoriteButton.setupState(isFav:  photoItem.isFav ?? false)
         cell.callback = { isFav in
             self.updateListOf(self.photos, with: photoItem.id, isFav: isFav)
-            self.collectionView.deleteItems(at: [indexPath])
-            self.photos.remove(at: indexPath.row)
+            if self.isFavoriteGallery {
+                self.collectionView.deleteItems(at: [indexPath])
+                self.photos.remove(at: indexPath.row)
+            }
         }
         return cell
     }
