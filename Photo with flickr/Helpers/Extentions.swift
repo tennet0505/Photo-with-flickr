@@ -37,3 +37,12 @@ extension UIViewController {
         present(alert, animated: true, completion: nil)
     }
 }
+
+extension UIButton {
+    func setupState(isFav: Bool) {
+        let unselectedfavImage = UIImage(systemName: "heart")?.withRenderingMode(.alwaysTemplate)
+        let selectedfavImage = UIImage(systemName: "heart.fill")?.withRenderingMode(.alwaysTemplate)
+        isFav ? self.setImage(selectedfavImage, for: .normal) : self.setImage(unselectedfavImage, for: .normal)
+        self.tintColor = isFav ? .red : .gray
+    }
+}

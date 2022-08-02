@@ -16,10 +16,9 @@ class MainCollectionViewCell: UICollectionViewCell {
     var callback : ((Bool) -> ())?
     
     @IBAction func favButtonTap(_ sender: Any) {
-        let unselectedfavImage = UIImage(systemName: "heart")
-        let selectedfavImage = UIImage(systemName: "heart.fill")
         isFav = !isFav
-        isFav ? favButton.setImage(selectedfavImage, for: .normal) : favButton.setImage(unselectedfavImage, for: .normal)
+        favButton.setupState(isFav: isFav)
         callback?(isFav)
     }
 }
+
