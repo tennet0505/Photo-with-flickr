@@ -63,13 +63,11 @@ extension DetailViewController: UICollectionViewDataSource, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! DetailCollectionViewCell
-        let unselectedfavImage = UIImage(systemName: "heart")
-        let selectedfavImage = UIImage(systemName: "heart.fill")
         let photoItem = self.photos[indexPath.row]
         cell.imageView.sd_setImage(with: photoItem.urlImage)
         cell.nameLabel.text = photoItem.title
         cell.isFav = photoItem.isFav ?? false
-        (photoItem.isFav ?? false) ? cell.favoriteButton.setImage(selectedfavImage, for: .normal) : cell.favoriteButton.setImage(unselectedfavImage, for: .normal)
+        cell.favoriteButton.setupState(isFav:  photoItem.isFav ?? false)
         cell.callback = { isFav in
             self.updateListOf(self.photos, with: photoItem.id, isFav: isFav)
         }
