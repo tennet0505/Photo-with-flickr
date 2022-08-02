@@ -17,6 +17,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     
     var photos: [PhotoElement] = []
     var selectedIndexPath = IndexPath(row: 0, section: 0)
+    var isFavoriteGallery = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     
     func setupUI() {
         navigationController?.navigationBar.standardAppearance.titleTextAttributes = [.foregroundColor: UIColor(named: "mainColor")]
+        navigationItem.title = isFavoriteGallery ? PhotoLocale.favorites : ""
         scrollToIndex(index: selectedIndexPath.row)
         zoomView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         scrollView.minimumZoomScale = 1.0
@@ -49,7 +51,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
             self.zoomView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
             self.zoomView.alpha = 0
         }) { (_) in
-            self.navigationItem.title = ""
+            self.navigationItem.title = self.isFavoriteGallery ? PhotoLocale.favorites : ""
             self.imageViewZoom.image = UIImage(named: "")
             self.zoomView.isHidden = true
         }

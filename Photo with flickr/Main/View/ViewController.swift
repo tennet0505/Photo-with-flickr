@@ -62,6 +62,7 @@ class ViewController: UIViewController {
            let vc = segue.destination as? DetailViewController {
             vc.selectedIndexPath = self.selectedIndexPath
             vc.photos = self.photos
+            vc.isFavoriteGallery = showFavorites
         }
     }
     
@@ -139,8 +140,16 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
         cell.favButton.setupState(isFav: photoItem.isFav ?? false)
         cell.callback = { isFav in
             self.updateListOf(self.photos, with: photoItem.id, isFav: isFav)
+            if self.showFavorites, !isFav {
+                self.removeCellFromFavoriteWith(indexPath: indexPath)
+            }
         }
         return cell
+    }
+    
+    func removeCellFromFavoriteWith(indexPath: IndexPath) {
+        self.collectionView.deleteItems(at: [indexPath])
+        self.photos.remove(at: indexPath.row)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
