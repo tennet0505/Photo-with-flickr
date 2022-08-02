@@ -33,35 +33,59 @@
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jxp-68-led">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F1s-h7-HvZ">
                                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jxp-68-led">
+                                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <integer key="value" value="6"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </imageView>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Gradient" translatesAutoresizingMaskIntoConstraints="NO" id="eNW-gM-SIg">
+                                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                        </imageView>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hqo-RS-sy8">
+                                                            <rect key="frame" x="104" y="104" width="16" height="16"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="16" id="5tg-bE-9rC"/>
+                                                                <constraint firstAttribute="width" constant="16" id="AkV-XC-XsU"/>
+                                                            </constraints>
+                                                            <color key="tintColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <state key="normal" title="Button"/>
+                                                            <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
+                                                            <connections>
+                                                                <action selector="favButtonTap:" destination="Pyg-Yc-9OK" eventType="touchUpInside" id="bvB-N3-sbe"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstItem="eNW-gM-SIg" firstAttribute="top" secondItem="F1s-h7-HvZ" secondAttribute="top" id="B5G-KW-zxG"/>
+                                                        <constraint firstAttribute="bottom" secondItem="Jxp-68-led" secondAttribute="bottom" id="FHU-MA-jEg"/>
+                                                        <constraint firstAttribute="bottom" secondItem="eNW-gM-SIg" secondAttribute="bottom" id="MQV-to-fOR"/>
+                                                        <constraint firstItem="eNW-gM-SIg" firstAttribute="leading" secondItem="F1s-h7-HvZ" secondAttribute="leading" id="VWA-0O-DpP"/>
+                                                        <constraint firstItem="Jxp-68-led" firstAttribute="top" secondItem="F1s-h7-HvZ" secondAttribute="top" id="Y9s-KO-IDL"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Hqo-RS-sy8" secondAttribute="trailing" constant="8" id="gQR-2e-wH8"/>
+                                                        <constraint firstItem="Jxp-68-led" firstAttribute="leading" secondItem="F1s-h7-HvZ" secondAttribute="leading" id="lS2-rk-FZK"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Jxp-68-led" secondAttribute="trailing" id="qMn-IR-YID"/>
+                                                        <constraint firstAttribute="trailing" secondItem="eNW-gM-SIg" secondAttribute="trailing" id="vSb-wo-ier"/>
+                                                        <constraint firstAttribute="bottom" secondItem="Hqo-RS-sy8" secondAttribute="bottom" constant="8" id="yZB-uL-5DL"/>
+                                                    </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                             <integer key="value" value="6"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
-                                                </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hqo-RS-sy8">
-                                                    <rect key="frame" x="104" y="104" width="16" height="16"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="16" id="5tg-bE-9rC"/>
-                                                        <constraint firstAttribute="width" constant="16" id="AkV-XC-XsU"/>
-                                                    </constraints>
-                                                    <color key="tintColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
-                                                    <connections>
-                                                        <action selector="favButtonTap:" destination="Pyg-Yc-9OK" eventType="touchUpInside" id="bvB-N3-sbe"/>
-                                                    </connections>
-                                                </button>
+                                                </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Jxp-68-led" firstAttribute="top" secondItem="gfJ-wu-N44" secondAttribute="top" id="8q8-5C-1xa"/>
-                                                <constraint firstAttribute="trailing" secondItem="Jxp-68-led" secondAttribute="trailing" id="E8y-9Y-gVj"/>
-                                                <constraint firstAttribute="bottom" secondItem="Jxp-68-led" secondAttribute="bottom" id="ERd-DH-EdO"/>
-                                                <constraint firstAttribute="bottom" secondItem="Hqo-RS-sy8" secondAttribute="bottom" constant="8" id="GTC-Aw-0QS"/>
-                                                <constraint firstAttribute="trailing" secondItem="Hqo-RS-sy8" secondAttribute="trailing" constant="8" id="Ufy-vT-VBp"/>
-                                                <constraint firstItem="Jxp-68-led" firstAttribute="leading" secondItem="gfJ-wu-N44" secondAttribute="leading" id="l13-6e-jLd"/>
+                                                <constraint firstAttribute="bottom" secondItem="F1s-h7-HvZ" secondAttribute="bottom" id="4hY-2x-Tac"/>
+                                                <constraint firstAttribute="trailing" secondItem="F1s-h7-HvZ" secondAttribute="trailing" id="Je4-WA-56N"/>
+                                                <constraint firstItem="F1s-h7-HvZ" firstAttribute="top" secondItem="gfJ-wu-N44" secondAttribute="top" id="g7c-Xg-CdR"/>
+                                                <constraint firstItem="F1s-h7-HvZ" firstAttribute="leading" secondItem="gfJ-wu-N44" secondAttribute="leading" id="yRo-73-RV4"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <connections>
@@ -296,6 +320,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Gradient" width="504" height="252"/>
         <image name="heart" catalog="system" width="128" height="109"/>
         <image name="multiply.circle" catalog="system" width="128" height="121"/>
     </resources>
