@@ -32,6 +32,9 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if showFavorites {
+            self.photos = photos.filter{ $0.isFav ?? true }
+        }
         collectionView.reloadData()
     }
     
@@ -141,15 +144,11 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
         cell.callback = { isFav in
             self.updateListOf(self.photos, with: photoItem.id, isFav: isFav)
             if self.showFavorites, !isFav {
-                self.removeCellFromFavoriteWith(indexPath: indexPath)
+                self.collectionView.deleteItems(at: [indexPath])
+                self.photos.remove(at: indexPath.row)
             }
         }
         return cell
-    }
-    
-    func removeCellFromFavoriteWith(indexPath: IndexPath) {
-        self.collectionView.deleteItems(at: [indexPath])
-        self.photos.remove(at: indexPath.row)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
