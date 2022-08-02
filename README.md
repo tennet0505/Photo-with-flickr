@@ -24,3 +24,4 @@ Async-await for asynchronous calls (e.g. API calls)
 MVVM
 
 P.S. If the images don't load, let me know and I'll update the app. The authentication token is temporary and the gallery's link needs to be updated.
+email: tennet0505@gmail.com
