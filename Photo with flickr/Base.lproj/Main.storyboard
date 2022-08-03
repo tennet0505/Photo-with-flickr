@@ -191,6 +191,13 @@
                                                     </attributedString>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" translatesAutoresizingMaskIntoConstraints="NO" id="fxg-Tp-SOc">
+                                                    <rect key="frame" x="208" y="368.5" width="0.0" height="0.0"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" id="2wL-2v-i9x"/>
+                                                        <constraint firstAttribute="width" secondItem="fxg-Tp-SOc" secondAttribute="height" multiplier="1:1" id="Hzi-0t-Bsd"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
@@ -199,8 +206,10 @@
                                                 <constraint firstItem="hqv-V8-3bW" firstAttribute="top" secondItem="I1D-di-89H" secondAttribute="top" id="8NJ-5g-QYe"/>
                                                 <constraint firstItem="iSp-C5-Zpx" firstAttribute="top" secondItem="I1D-di-89H" secondAttribute="top" constant="32" id="Fwb-ei-rNX"/>
                                                 <constraint firstItem="DwR-lc-A80" firstAttribute="top" secondItem="I1D-di-89H" secondAttribute="top" constant="32" id="Gd6-zW-Aes"/>
+                                                <constraint firstItem="fxg-Tp-SOc" firstAttribute="centerX" secondItem="I1D-di-89H" secondAttribute="centerX" id="WZX-bM-2VT"/>
                                                 <constraint firstAttribute="bottom" secondItem="hqv-V8-3bW" secondAttribute="bottom" id="fJn-mO-mdm"/>
                                                 <constraint firstAttribute="trailing" secondItem="hqv-V8-3bW" secondAttribute="trailing" constant="16" id="g8X-8d-b5A"/>
+                                                <constraint firstItem="fxg-Tp-SOc" firstAttribute="centerY" secondItem="I1D-di-89H" secondAttribute="centerY" id="lvZ-cN-UaK"/>
                                                 <constraint firstItem="iSp-C5-Zpx" firstAttribute="leading" secondItem="DwR-lc-A80" secondAttribute="trailing" constant="32" id="ngy-xj-ZOu"/>
                                                 <constraint firstAttribute="trailing" secondItem="iSp-C5-Zpx" secondAttribute="trailing" constant="16" id="xYc-sA-4o9"/>
                                             </constraints>
@@ -208,6 +217,7 @@
                                         <connections>
                                             <outlet property="favoriteButton" destination="iSp-C5-Zpx" id="0aW-IW-B6d"/>
                                             <outlet property="imageView" destination="hqv-V8-3bW" id="3g1-p9-nxF"/>
+                                            <outlet property="likeWidthConstraint" destination="2wL-2v-i9x" id="Clr-ic-t8p"/>
                                             <outlet property="nameLabel" destination="DwR-lc-A80" id="iK2-ef-vrD"/>
                                         </connections>
                                     </collectionViewCell>
@@ -327,6 +337,7 @@
     <resources>
         <image name="Gradient" width="504" height="252"/>
         <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="heart" width="56" height="56"/>
         <image name="multiply.circle" catalog="system" width="128" height="121"/>
     </resources>
 </document>

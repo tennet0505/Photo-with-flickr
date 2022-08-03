@@ -138,9 +138,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! MainCollectionViewCell
         let photoItem = self.photos[indexPath.row]
-        cell.image.sd_setImage(with: photoItem.urlImage)
-        cell.isFav = photoItem.isFav ?? false
-        cell.favButton.setupState(isFav: photoItem.isFav ?? false)
+        cell.setupCellWith(photoItem)
         cell.callback = { isFav in
             self.updateListOf(self.photos, with: photoItem.id, isFav: isFav)
             if self.showFavorites, !isFav {

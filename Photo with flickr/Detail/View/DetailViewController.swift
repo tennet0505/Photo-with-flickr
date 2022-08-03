@@ -15,12 +15,16 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var zoomView: UIView!
     @IBOutlet weak var imageViewZoom: UIImageView!
     
+    
     var photos: [PhotoElement] = []
     var selectedIndexPath = IndexPath(row: 0, section: 0)
     var isFavoriteGallery = false
     
+    private var doubleTapGesture: UITapGestureRecognizer!
+       
     override func viewDidLoad() {
         super.viewDidLoad()
+       
         setupUI()
     }
     
@@ -31,6 +35,29 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         zoomView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         scrollView.minimumZoomScale = 1.0
         scrollView.maximumZoomScale = 3.0
+        setupGesture()
+    }
+    
+    fileprivate func setupGesture() {
+        doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(didDoubleTapCollectionView))
+        doubleTapGesture.numberOfTapsRequired = 2
+        collectionView.addGestureRecognizer(doubleTapGesture)
+        doubleTapGesture.delaysTouchesBegan = true
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapImageView(_:)))
+        zoomView.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    @objc func didTapImageView(_ sender: UITapGestureRecognizer) {
+        closeZoomView()
+    }
+    
+    @objc func didDoubleTapCollectionView() {
+        let pointInCollectionView = doubleTapGesture.location(in: collectionView)
+        if let selectedIndexPath = collectionView.indexPathForItem(at: pointInCollectionView) {
+            let selectedCell = collectionView.cellForItem(at: selectedIndexPath) as! DetailCollectionViewCell
+            selectedCell.animateHeartLike()
+        }
     }
     
     func scrollToIndex(index:Int) {
@@ -47,6 +74,10 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     
     @IBAction func closeButton(_ sender: Any) {
         
+        closeZoomView()
+    }
+    
+    fileprivate func closeZoomView() {
         UIView.animate(withDuration: 0.5, delay: 0, animations: {
             self.zoomView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
             self.zoomView.alpha = 0
@@ -66,10 +97,7 @@ extension DetailViewController: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! DetailCollectionViewCell
         let photoItem = self.photos[indexPath.row]
-        cell.imageView.sd_setImage(with: photoItem.urlImage)
-        cell.nameLabel.text = photoItem.title
-        cell.isFav = photoItem.isFav ?? false
-        cell.favoriteButton.setupState(isFav:  photoItem.isFav ?? false)
+        cell.setupCellWith(photoItem)
         cell.callback = { isFav in
             self.updateListOf(self.photos, with: photoItem.id, isFav: isFav)
             if self.isFavoriteGallery {

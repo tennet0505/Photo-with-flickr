@@ -20,5 +20,11 @@ class MainCollectionViewCell: UICollectionViewCell {
         favButton.setupState(isFav: isFav)
         callback?(isFav)
     }
+    
+    func setupCellWith(_ photoItem: PhotoElement) {
+        image.sd_setImage(with: photoItem.urlImage)
+        isFav = photoItem.isFav ?? false
+        favButton.setupState(isFav: photoItem.isFav ?? false)
+    }
 }
 
