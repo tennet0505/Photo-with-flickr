@@ -11,6 +11,7 @@ Zooming in the detail screen.
 Added a live search using API for images.
 
 NEW!!! A new feature double tap for favourite, if photo is not favorite (only on Detail Screen)
+Color adaptation for dark mode.
 
 Bonus features
 
