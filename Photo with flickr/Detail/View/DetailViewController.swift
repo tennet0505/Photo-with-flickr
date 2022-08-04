@@ -32,7 +32,6 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
         navigationController?.navigationBar.standardAppearance.titleTextAttributes = [.foregroundColor: UIColor(named: "mainColor")]
         navigationItem.title = isFavoriteGallery ? PhotoLocale.favorites : ""
         scrollToIndex(index: selectedIndexPath.row)
-        zoomView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         scrollView.minimumZoomScale = 1.0
         scrollView.maximumZoomScale = 3.0
         setupGesture()
@@ -78,8 +77,8 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
     }
     
     fileprivate func closeZoomView() {
+        navigationController?.setNavigationBarHidden(false, animated: false)
         UIView.animate(withDuration: 0.5, delay: 0, animations: {
-            self.zoomView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
             self.zoomView.alpha = 0
         }) { (_) in
             self.navigationItem.title = self.isFavoriteGallery ? PhotoLocale.favorites : ""
@@ -115,8 +114,8 @@ extension DetailViewController: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let photoItem = self.photos[indexPath.row]
         imageViewZoom.sd_setImage(with: photoItem.urlImage)
-        self.zoomView.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         self.zoomView.isHidden = false
+        navigationController?.setNavigationBarHidden(true, animated: false)
         UIView.animate(withDuration: 0.5, delay: 0, animations: {
             self.navigationItem.title = photoItem.title
             self.zoomView.transform = CGAffineTransform.identity
