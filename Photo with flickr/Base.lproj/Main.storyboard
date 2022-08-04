@@ -49,10 +49,10 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                         </imageView>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hqo-RS-sy8">
-                                                            <rect key="frame" x="104" y="104" width="16" height="16"/>
+                                                            <rect key="frame" x="96" y="96" width="32" height="32"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="16" id="5tg-bE-9rC"/>
-                                                                <constraint firstAttribute="width" constant="16" id="AkV-XC-XsU"/>
+                                                                <constraint firstAttribute="height" constant="32" id="5tg-bE-9rC"/>
+                                                                <constraint firstAttribute="width" constant="32" id="AkV-XC-XsU"/>
                                                             </constraints>
                                                             <color key="tintColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <state key="normal" title="Button"/>
@@ -69,11 +69,11 @@
                                                         <constraint firstAttribute="bottom" secondItem="eNW-gM-SIg" secondAttribute="bottom" id="MQV-to-fOR"/>
                                                         <constraint firstItem="eNW-gM-SIg" firstAttribute="leading" secondItem="F1s-h7-HvZ" secondAttribute="leading" id="VWA-0O-DpP"/>
                                                         <constraint firstItem="Jxp-68-led" firstAttribute="top" secondItem="F1s-h7-HvZ" secondAttribute="top" id="Y9s-KO-IDL"/>
-                                                        <constraint firstAttribute="trailing" secondItem="Hqo-RS-sy8" secondAttribute="trailing" constant="8" id="gQR-2e-wH8"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Hqo-RS-sy8" secondAttribute="trailing" id="gQR-2e-wH8"/>
                                                         <constraint firstItem="Jxp-68-led" firstAttribute="leading" secondItem="F1s-h7-HvZ" secondAttribute="leading" id="lS2-rk-FZK"/>
                                                         <constraint firstAttribute="trailing" secondItem="Jxp-68-led" secondAttribute="trailing" id="qMn-IR-YID"/>
                                                         <constraint firstAttribute="trailing" secondItem="eNW-gM-SIg" secondAttribute="trailing" id="vSb-wo-ier"/>
-                                                        <constraint firstAttribute="bottom" secondItem="Hqo-RS-sy8" secondAttribute="bottom" constant="8" id="yZB-uL-5DL"/>
+                                                        <constraint firstAttribute="bottom" secondItem="Hqo-RS-sy8" secondAttribute="bottom" id="yZB-uL-5DL"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
