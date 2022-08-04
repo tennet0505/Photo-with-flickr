@@ -84,6 +84,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate {
             self.navigationItem.title = self.isFavoriteGallery ? PhotoLocale.favorites : ""
             self.imageViewZoom.image = UIImage(named: "")
             self.zoomView.isHidden = true
+            self.scrollView.zoomScale = 1
         }
     }
 }
