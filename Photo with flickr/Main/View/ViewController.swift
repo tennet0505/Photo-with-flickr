@@ -8,6 +8,7 @@
 import UIKit
 import SDWebImage
 import ViewAnimator
+import Combine
 
 class ViewController: UIViewController {
     
@@ -21,13 +22,14 @@ class ViewController: UIViewController {
     var photos: [PhotoElement] = []
     var selectedIndexPath = IndexPath(row: 0, section: 0)
     var showFavorites = false
+    var cancellable: Set<AnyCancellable> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupViewModel()
+        bindViewModel()
         getPhotos()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,20 +40,41 @@ class ViewController: UIViewController {
         collectionView.reloadData()
     }
     
+    fileprivate func bindViewModel() {
+        viewModel.$results
+            .receive(on: RunLoop.main)
+            .sink { [weak self] result in
+                switch result {
+                case .failure(let error):
+                    self?.dismissHUD(isAnimated: true)
+                    self?.showAlertWith(message: error.localizedDescription)
+                case .success(let photos):
+                    self?.photos.removeAll()
+                    self?.photos = photos.photos?.photo ?? []
+                    self?.collectionView.reloadData()
+                    let animation = AnimationType.from(direction: .top, offset: 30.0)
+                    UIView.animate(views: self?.collectionView.visibleCells ?? [], animations: [animation], delay: 0, duration: 0.3)
+                    self?.dismissHUD(isAnimated: true)
+                case .none:
+                    break
+                }
+            }.store(in: &cancellable)
+    }
+    
     func setupViewModel() {
         apiService = ApiService()
         viewModel = MainViewModel(apiService: apiService)
-        viewModel.mainViewModeldelegate = self
     }
     
     func setupUI() {
         navigationItem.searchController = searchBarController
         searchBarController.searchResultsUpdater = self
-        navigationController?.navigationBar.standardAppearance.titleTextAttributes = [.foregroundColor: UIColor(named: "mainColor")]
+        navigationController?.navigationBar.standardAppearance.titleTextAttributes = [.foregroundColor: UIColor(named: "mainColor") ?? .lightGray]
     }
     
     func getPhotos() {
         photos.removeAll()
+        showHUD()
         viewModel.make(apiRequest: .getPhoto(withRandomGallery: false))
     }
     
@@ -89,28 +112,6 @@ class ViewController: UIViewController {
     
 }
 
-//MARK: Delegates
-extension ViewController: MainViewModelDelegate {
-    func didStartRequest() {
-        showHUD()
-    }
-    
-    func didFinishLoading(photos: [PhotoElement]) {
-        DispatchQueue.main.async {
-            self.photos.removeAll()
-            self.photos = photos
-            self.collectionView.reloadData()
-            let animation = AnimationType.from(direction: .top, offset: 30.0)
-            UIView.animate(views: self.collectionView.visibleCells, animations: [animation], delay: 0, duration: 0.3)
-        }
-        dismissHUD(isAnimated: true)
-    }
-    
-    func didFinishWith(Error: Error) {
-        dismissHUD(isAnimated: true)
-        showAlertWith(message: Error.localizedDescription)
-    }
-}
 //MARK: Search bar
 extension ViewController: UISearchResultsUpdating  {
     func updateSearchResults(for searchController: UISearchController) {
